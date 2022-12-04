@@ -5,7 +5,6 @@ services:
     image: redis:latest
     container_name: tegola-redis
     ports:
-      - 6379:6379
 
   database:
     image: postgis/postgis:13-3.1-alpine
@@ -41,7 +40,7 @@ services:
         bash /data/init.sh
 
   tegola-mvt-postgis-provider:
-    image: gospatial/tegola:v0.15.2
+    image: gospatial/tegola:v0.16.0
     container_name: tegola-mvt-postgis-provider
     depends_on:
       database:
