@@ -1,21 +1,17 @@
 # tegola-example-bonn
 
-Tegola.io quickstart in a containerized environment. Set up a `postgis` and `mvt_postgis` provider with an OSM dump of the city of Bonn, Germany.
+Tegola.io quickstart in a containerized environment.
+Set up a `mvt_postgis` provider with an OSM dump of the city of Bonn, Germany.
 
 ## Usage
 
-```
+```bash
 git clone https://github.com/iwpnd/tegola-example-bonn.git`
+cd tegola-example-bonn/
 ```
 
-Download and unzip [bonn_osm.dump](https://github.com/go-spatial/tegola-example-data/raw/master/bonn_osm.sql.tar.gz) to `./bin/bonn_osm.dump`.
-
-```
+```bas
 docker compose up
-```
-
-```
-PGPASSWORD=postgres sh bin/init.sh
 ```
 
 ### Provider: `mvt_postgis`
@@ -23,10 +19,11 @@ PGPASSWORD=postgres sh bin/init.sh
 Tegola requests mvt tiles from PostGIS and forwards the result.
 Open `http://localhost/8081`
 
-### Provider: `postgis`
+### Clean up
 
-Tegola queries PostGIS for data, builds tiles and forwards the result.
-Open `http://localhost/8081`
+```bash
+docker compose down -v
+```
 
 ## License
 
