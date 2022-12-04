@@ -1,6 +1,12 @@
 version: "3"
 
 services:
+  redis:
+    image: redis:latest
+    container_name: tegola-redis
+    ports:
+      - 6379:6379
+
   database:
     image: postgis/postgis:13-3.1-alpine
     container_name: postgis
@@ -16,36 +22,23 @@ services:
     ports:
       - 5432:5432
 
-  redis:
-    image: redis:latest
-    container_name: tegola-redis
-    ports:
-      - 6379:6379
-
-  tegola-postgis-provider:
-    image: gospatial/tegola:v0.15.2
-    container_name: tegola-postgis-provider
+  migration:
+    image: postgis/postgis:13-3.1-alpine
+    container_name: migration
     depends_on:
       database:
         condition: service_healthy
-    restart: "unless-stopped"
-    ports:
-      - 8081:8081
     volumes:
-      - ./config:/data
-    command: >
-      serve --config /data/config-postgis.toml
+      - ./data:/data
     environment:
-      DB_HOST: database
-      DB_PORT: 5432
-      DB_NAME: bonn
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      TEGOLA_POSTGIS_SSL: disable
-      TEGOLA_REDIS_SSL: false
-      REDIS_HOST: redis:6379
-      REDIS_PASSWORD: ""
-      TEGOLA_SQL_DEBUG: LAYER_SQL
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    command:
+      - /bin/bash
+      - -c
+      - |
+        tar -xzf /data/bonn_example.tar.gz -C /data
+        bash /data/init.sh
 
   tegola-mvt-postgis-provider:
     image: gospatial/tegola:v0.15.2
