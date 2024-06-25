@@ -10,14 +10,14 @@ git clone https://github.com/iwpnd/tegola-example-bonn.git`
 cd tegola-example-bonn/
 ```
 
-```bas
+```bash
 docker compose up
 ```
 
 ### Provider: `mvt_postgis`
 
 Tegola requests mvt tiles from PostGIS and forwards the result.
-Open `http://localhost/8081`
+Open `http://localhost:8080`
 
 ### Clean up
 
@@ -31,7 +31,7 @@ MIT
 
 ## Maintainer
 
-Benjamin Ramser - [@iwpnd](https://github.com/iwpnd)  
+Benjamin Ramser - [@iwpnd](https://github.com/iwpnd)
 Project Link: [https://github.com/iwpnd/tegola-example-bonn](https://github.com/iwpnd/tegola-example-bonn)
 
 ## Acknowledgements
