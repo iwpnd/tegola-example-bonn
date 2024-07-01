@@ -17,7 +17,7 @@ docker compose up
 ### Provider: `mvt_postgis`
 
 Tegola requests mvt tiles from PostGIS and forwards the result.
-Open `http://localhost/8081`
+Open `http://localhost/8080`
 
 ### Clean up
 
