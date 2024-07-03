@@ -41,14 +41,14 @@ services:
         bash /data/init.sh
 
   tegola-mvt-postgis-provider:
-    image: gospatial/tegola:v0.16.0
+    image: gospatial/tegola:v0.20.0
     container_name: tegola-mvt-postgis-provider
     depends_on:
       database:
         condition: service_healthy
     restart: "unless-stopped"
     ports:
-      - 8080:8080
+      - 8081:8081
     volumes:
       - ./config:/data
     command: >
